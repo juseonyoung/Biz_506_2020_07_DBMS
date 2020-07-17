@@ -18,6 +18,7 @@
 
 ### 최초로 깃허브에 프로젝트 업로드 하기
 1. git init : 현재 폴더를 깃허브에 올리기 위한 local repository로 생성
+2. vi .gitignore
 
 #### 생성된 local repository에 깃허브 접속 정보 추가
 
