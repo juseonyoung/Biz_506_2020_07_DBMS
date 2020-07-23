@@ -52,7 +52,7 @@ public class jdbcEx_01 {
 			
 			// 4. DB에게 SQL 보내기
 			PreparedStatement pSt = null;
-			String strSql = DBContract.ORDER_SELECT;
+			String strSql = DBContract.ORDER_SELECT_ALL;
 			System.out.println(strSql);
 			
 			// DB에게 SQL을 보내고 그 결과를 pSt(preparebleStatement)에 받아라 

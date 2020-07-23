@@ -16,7 +16,7 @@ public class jdbcEx_02 {
 	public static void main(String[] args) {
 		
 		
-		String order_select = DBContract.ORDER_SELECT;
+		String order_select = DBContract.ORDER_SELECT_ALL;
 		Connection dbConn = DBConnection.getDBConnection();
 		List<OrderVO> orderList = new ArrayList<>();
 		

@@ -9,29 +9,7 @@ public class DBContract {
 	public final static String DB_USER = "user2";
 	public final static String DB_PASSWORD = "user2";
 	
-	
-	public final static String ORDER_DELETE =
-			" DELETE FROM "
-			+ORDER.TABLE 
-			+" WHERE "
-			+ORDER.COL_O_SEQ_LONG + " =? ";
-	
-	public final static String ORDER_UPDATE=
-			" UPDATE "
-			+ORDER.TABLE 
-			+ " SET "
-			+ORDER.COL_O_SEQ_LONG+ "=?,"
-			+ORDER.COL_O_NUM_STR + "=?,"  
-			+ORDER.COL_O_DATE_STR  + "=?,"
-			+ORDER.COL_O_CNUM_STR + "=?," 
-			+ORDER.COL_O_PCODE_STR + "=?,"
-			+ORDER.COL_O_PNAME_STR + "=?,"
-			+ORDER.COL_O_PRICE_INT + "=?,"
-			+ORDER.COL_O_QTY_INT   + "=?"
-			+" WHERE "
-			+ORDER.COL_O_SEQ_LONG + "=?";
-	
-	
+	// DML에서 crud 중에 create, 데이터를 추가하는 sql 
 	public final static String ORDER_INSERT =
 			" INSERT INTO "
 			+ORDER.TABLE + "("
@@ -40,14 +18,12 @@ public class DBContract {
 			+ORDER.COL_O_DATE_STR  +","
 			+ORDER.COL_O_CNUM_STR +"," 
 			+ORDER.COL_O_PCODE_STR +","
-			//+ORDER.COL_O_PNAME_STR +","
 			+ORDER.COL_O_PRICE_INT +","
 			+ORDER.COL_O_QTY_INT   
 			+" )VALUES ("
-			+" ORDER.SEQUENCE_NEXTVAL,?,'2020-07-22',?,?,?) ";	
-			//+" ?,?,?,?,?,? "
-			//+ " ) ";
-			
+			+ ORDER.SEQUENCE_NEXTVAL // O_SEQ 칼럼값을 insert 수행할 때 자동 세팅
+			+ ", ?,?,?,?,?,? "
+			+ ")";
 	
 	public final static String ORDER_SELECT_ALL =
 			" SELECT "
@@ -62,9 +38,51 @@ public class DBContract {
 			+ORDER.COL_O_TOTAL_INT
 			+" FROM " + ORDER.TABLE;
 	
+	
+	// SEQ(PK)값으로 1개의 레코드를 검색하는 sql
+	public final static String ORDER_FIND_BY_SEQ =
+			" SELECT "
+			+ORDER.COL_O_SEQ_LONG  +","
+			+ORDER.COL_O_NUM_STR   +","
+			+ORDER.COL_O_DATE_STR  +","
+			+ORDER.COL_O_CNUM_STR  +","
+			+ORDER.COL_O_PCODE_STR +","
+			+ORDER.COL_O_PNAME_STR +","
+			+ORDER.COL_O_PRICE_INT +","
+			+ORDER.COL_O_QTY_INT   +","
+			+ORDER.COL_O_TOTAL_INT
+			+" FROM " + ORDER.TABLE
+			+" WHERE " + ORDER.COL_O_SEQ_LONG +" = ? ";
+			
+	
+	
+	
+	public final static String ORDER_UPDATE=
+			" UPDATE "
+			+ORDER.TABLE 
+			+ " SET "
+			+ORDER.COL_O_NUM_STR + "=?,"  
+			+ORDER.COL_O_DATE_STR  + "=?,"
+			+ORDER.COL_O_CNUM_STR + "=?," 
+			+ORDER.COL_O_PCODE_STR + "=?,"
+			+ORDER.COL_O_PRICE_INT + "=?,"
+			+ORDER.COL_O_QTY_INT   + "=?"
+			+" WHERE "
+			+ORDER.COL_O_SEQ_LONG + "=?";
+	
+	
+
+	public final static String ORDER_DELETE =
+			" DELETE FROM "
+			+ORDER.TABLE 
+			+" WHERE "
+			+ORDER.COL_O_SEQ_LONG + " =? ";
+			
+
 	public static class ORDER {
 		
 		public final static String TABLE = " TBL_ORDER ";
+		public final static String SEQUENCE_NEXTVAL = " SEQ_ORDER.NEXTVAL ";
 		
 		public final static String COL_O_SEQ_LONG  = " o_seq "; //	NUMBER
 		public final static String COL_O_NUM_STR   = " o_num "; //	CHAR(6 BYTE)
