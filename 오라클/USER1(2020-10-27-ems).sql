@@ -19,7 +19,8 @@ select * from tbl_ems;
 create SEQUENCE seq_ems
 start with 1 increment by 1;
 
-
+delete from tbl_ems;
+commit;
 -- image table
 
 create table tbl_emsimages (
